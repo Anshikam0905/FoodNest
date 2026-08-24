@@ -1,0 +1,23 @@
+/* src/index.css */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e83667;
+  --color-primaryDark: #bb2c51;
+  --color-secondary: #21d4b9;
+  --color-dark: #303030;
+
+  --font-inter: "Inter", sans-serif;
+  --font-cursive: "Ephesis", cursive;
+  /* Container padding */
+  --container-padding: 1rem;
+  --container-padding-sm: 2rem;
+  --container-padding-md: 3rem;
+  --container-padding-lg: 4rem;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-inter);
+  }
+}
