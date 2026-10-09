@@ -11,60 +11,57 @@ import Contact from "./component/Contact";
 
 const App = () => {
   const [cart, setCart] = useState([]);
-
   const [showCart, setShowCart] = useState(false);
-
   const [showCheckout, setShowCheckout] = useState(false);
+  const [category, setCategory] = useState("All Foods");
 
   // Add food to cart
   const addToCart = (food) => {
-    const existingFood = cart.find((item) => item.name === food.name);
+    setCart((previousCart) => {
+      const existingFood = previousCart.find((item) => item.name === food.name);
 
-    if (existingFood) {
-      const updatedCart = cart.map((item) => {
-        if (item.name === food.name) {
-          return {
-            ...item,
-            quantity: item.quantity + 1,
-          };
-        }
+      if (existingFood) {
+        return previousCart.map((item) =>
+          item.name === food.name
+            ? {
+                ...item,
+                quantity: (item.quantity || 1) + 1,
+              }
+            : item,
+        );
+      }
 
-        return item;
-      });
-
-      setCart(updatedCart);
-    } else {
-      setCart([
-        ...cart,
-        {
-          ...food,
-          quantity: 1,
-        },
-      ]);
-    }
+      return [...previousCart, { ...food, quantity: 1 }];
+    });
   };
 
   return (
     <>
-      {/* Navbar */}
       <Navbar cart={cart} setShowCart={setShowCart} />
 
-      {/* Main Website */}
       {!showCart && !showCheckout && (
         <>
-          <Home />
+          <Home
+            cart={cart}
+            addToCart={addToCart}
+            setShowCart={setShowCart}
+            setCategory={setCategory}
+          />
 
-          <Menu cart={cart} addToCart={addToCart} />
+          <Menu
+            cart={cart}
+            addToCart={addToCart}
+            category={category}
+            setCategory={setCategory}
+          />
 
-          <FoodDetails />
-
+          <FoodDetails addToCart={addToCart} />
           <About />
 
           <Contact />
         </>
       )}
 
-      {/* Cart */}
       {showCart && (
         <Cart
           cart={cart}
@@ -74,7 +71,6 @@ const App = () => {
         />
       )}
 
-      {/* Checkout */}
       {showCheckout && (
         <Checkout
           cart={cart}

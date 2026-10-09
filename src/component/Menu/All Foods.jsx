@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const AllFoods = ({ cart, addToCart }) => {
-  const [category, setCategory] = useState("All Foods");
-
+const AllFoods = ({ category, setCategory, cart, addToCart }) => {
   const foods = [
     {
       name: "Cheese Pizza",

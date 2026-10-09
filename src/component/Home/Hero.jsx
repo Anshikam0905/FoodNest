@@ -1,8 +1,14 @@
 import React from "react";
 
-function Hero() {
+function Hero({ setShowCart }) {
+  const goToSection = (section) => {
+    document.getElementById(section)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="bg-orange-50 py-16">
+    <section id="home" className="bg-orange-50 py-16">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left Side */}
         <div className="md:w-1/2">
@@ -21,12 +27,21 @@ function Hero() {
             tasty and delivered right to your doorstep.
           </p>
 
+          {/* Buttons */}
           <div className="mt-7 flex gap-4">
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600">
+            <button
+              type="button"
+              onClick={() => setShowCart(true)}
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg"
+            >
               Order Now
             </button>
 
-            <button className="border border-orange-500 text-orange-500 px-6 py-3 rounded-lg font-semibold hover:bg-orange-500 hover:text-white">
+            <button
+              type="button"
+              onClick={() => goToSection("menu")}
+              className="border border-orange-500 text-orange-500 px-6 py-3 rounded-lg font-semibold hover:bg-orange-500 hover:text-white"
+            >
               View Menu
             </button>
           </div>
