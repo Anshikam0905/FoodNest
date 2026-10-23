@@ -1,9 +1,10 @@
 import React from "react";
 
-const Navbar = ({ cart, setShowCart }) => {
-  // Close Cart and go to section
+const Navbar = ({ cart, setShowCart, setShowLogin }) => {
+  // Close Cart and scroll to a section
   const goToSection = (section) => {
     setShowCart(false);
+    setShowLogin(false);
 
     setTimeout(() => {
       document.getElementById(section)?.scrollIntoView({
@@ -14,7 +15,14 @@ const Navbar = ({ cart, setShowCart }) => {
 
   // Open Cart
   const openCart = () => {
+    setShowLogin(false);
     setShowCart(true);
+  };
+
+  // Open Login
+  const openLogin = () => {
+    setShowCart(false);
+    setShowLogin(true);
   };
 
   return (
@@ -30,7 +38,6 @@ const Navbar = ({ cart, setShowCart }) => {
 
         {/* Navigation Links */}
         <div className="flex items-center gap-6">
-          {/* Home */}
           <button
             onClick={() => goToSection("home")}
             className="text-gray-700 hover:text-orange-500 font-medium"
@@ -38,7 +45,6 @@ const Navbar = ({ cart, setShowCart }) => {
             Home
           </button>
 
-          {/* Menu */}
           <button
             onClick={() => goToSection("menu")}
             className="text-gray-700 hover:text-orange-500 font-medium"
@@ -46,7 +52,6 @@ const Navbar = ({ cart, setShowCart }) => {
             Menu
           </button>
 
-          {/* About */}
           <button
             onClick={() => goToSection("about")}
             className="text-gray-700 hover:text-orange-500 font-medium"
@@ -54,12 +59,19 @@ const Navbar = ({ cart, setShowCart }) => {
             About
           </button>
 
-          {/* Contact */}
           <button
             onClick={() => goToSection("contact")}
             className="text-gray-700 hover:text-orange-500 font-medium"
           >
             Contact
+          </button>
+
+          {/* Login */}
+          <button
+            onClick={openLogin}
+            className="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-50"
+          >
+            Login
           </button>
 
           {/* Cart */}

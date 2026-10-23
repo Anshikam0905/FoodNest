@@ -160,10 +160,7 @@ const Cart = ({ cart, setCart, setShowCart, setShowCheckout }) => {
 
               {/* Checkout Button */}
               <button
-                onClick={() => {
-                  setShowCart(false);
-                  setShowCheckout(true);
-                }}
+                onClick={() => setShowCheckout()}
                 className="w-full bg-orange-500 text-white py-3 rounded-lg mt-6 font-semibold hover:bg-orange-600"
               >
                 Proceed to Checkout

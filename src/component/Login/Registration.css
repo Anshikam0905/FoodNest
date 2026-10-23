@@ -1,0 +1,205 @@
+.register-page {
+  min-height: 100vh;
+  padding: 45px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff8f0;
+  font-family: Arial, sans-serif;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 1050px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Left food banner */
+
+.register-banner {
+  background: linear-gradient(145deg, #252016, #49301d);
+  color: white;
+  padding: 45px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.foodnest-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.foodnest-logo span {
+  font-size: 45px;
+}
+
+.foodnest-logo h1 {
+  font-size: 34px;
+  margin: 0;
+}
+
+.foodnest-logo h1 span {
+  color: #ff6b2c;
+  font-size: inherit;
+}
+
+.register-banner h2 {
+  color: #ff8b48;
+  margin-top: 30px;
+  font-size: 25px;
+}
+
+.register-banner p {
+  color: #f2e7dc;
+  line-height: 1.8;
+  max-width: 300px;
+}
+
+.food-emoji {
+  font-size: 52px;
+  margin: 25px 0;
+}
+
+.register-banner h3 {
+  font-size: 19px;
+  font-weight: normal;
+}
+
+/* Registration form */
+
+.register-form-section {
+  padding: 45px 50px;
+}
+
+.register-form-section h2 {
+  font-size: 32px;
+  margin: 0 0 12px;
+  color: #252525;
+}
+
+.register-form-section h2 span {
+  color: #f45b24;
+}
+
+.register-subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.register-form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.register-form-section input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.register-form-section input:focus {
+  border-color: #f45b24;
+  box-shadow: 0 0 0 3px rgba(244, 91, 36, 0.12);
+}
+
+.register-btn {
+  padding: 15px;
+  background: #f45b24;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.register-btn:hover {
+  background: #d94716;
+  transform: translateY(-2px);
+}
+
+.register-message {
+  color: #d52d2d;
+  font-size: 14px;
+  margin: 0;
+}
+
+.register-login {
+  margin-top: 25px;
+  text-align: center;
+  color: #666;
+}
+
+.register-login button {
+  background: none;
+  border: none;
+  color: #f45b24;
+  font-weight: bold;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.register-login button:hover {
+  text-decoration: underline;
+}
+
+.register-terms {
+  margin-top: 22px;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 768px) {
+  .register-page {
+    padding: 20px 12px;
+  }
+
+  .register-card {
+    grid-template-columns: 1fr;
+  }
+
+  .register-banner {
+    padding: 30px 20px;
+  }
+
+  .register-banner h2 {
+    margin-top: 15px;
+  }
+
+  .food-emoji {
+    margin: 10px 0;
+    font-size: 38px;
+  }
+
+  .register-form-section {
+    padding: 30px 22px;
+  }
+
+  .register-form-section h2 {
+    font-size: 27px;
+  }
+}

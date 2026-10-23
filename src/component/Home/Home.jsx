@@ -11,9 +11,9 @@ function Home({ setShowCart, setCategory, cart, addToCart }) {
 
       <Categories setCategory={setCategory} />
 
-      <PopularFoods cart={cart} addToCart={addToCart} />
-
       <SpecialOffers cart={cart} addToCart={addToCart} />
+
+      <PopularFoods cart={cart} addToCart={addToCart} />
     </div>
   );
 }
