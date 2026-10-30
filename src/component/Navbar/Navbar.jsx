@@ -1,27 +1,40 @@
 import React from "react";
 
-const Navbar = ({ cart, setShowCart, setShowLogin }) => {
-  // Close Cart and scroll to a section
+const Navbar = ({
+  cart,
+  setShowCart,
+  setShowLogin,
+  setShowRegister,
+  setShowCheckout,
+}) => {
+  // Navigate to website sections
   const goToSection = (section) => {
     setShowCart(false);
+    setShowCheckout(false);
     setShowLogin(false);
+    setShowRegister(false);
 
     setTimeout(() => {
       document.getElementById(section)?.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
-    }, 100);
+    }, 150);
   };
 
   // Open Cart
   const openCart = () => {
     setShowLogin(false);
+    setShowRegister(false);
+    setShowCheckout(false);
     setShowCart(true);
   };
 
   // Open Login
   const openLogin = () => {
     setShowCart(false);
+    setShowCheckout(false);
+    setShowRegister(false);
     setShowLogin(true);
   };
 

@@ -52,7 +52,7 @@ const App = () => {
     setShowCart(true);
   };
 
-  // Open login page
+  // Open login
   const openLogin = () => {
     setShowCart(false);
     setShowCheckout(false);
@@ -60,7 +60,7 @@ const App = () => {
     setShowLogin(true);
   };
 
-  // Open registration page
+  // Open registration
   const openRegister = () => {
     setShowCart(false);
     setShowCheckout(false);
@@ -68,32 +68,35 @@ const App = () => {
     setShowRegister(true);
   };
 
-  // Return to the main website
+  // Close login and registration
   const closeAuth = () => {
     setShowLogin(false);
     setShowRegister(false);
   };
 
-  // Check login before checkout
+  // Checkout: login required only for ordering
   const handleCheckout = () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
     setShowCart(false);
 
     if (isLoggedIn) {
       setShowCheckout(true);
     } else {
-      setShowCheckout(false);
-      setShowRegister(false);
       setShowLogin(true);
     }
   };
 
-  // Demo login success
+  // Login successful
   const handleLogin = () => {
     setIsLoggedIn(true);
     setShowLogin(false);
     setShowRegister(false);
 
-    // Continue checkout if the user came from the cart
+    // Continue to checkout after login
     setShowCart(false);
     setShowCheckout(true);
   };
@@ -102,8 +105,7 @@ const App = () => {
   const handleRegister = (data) => {
     console.log("Registration submitted:", data);
 
-    // This only demonstrates page navigation.
-    // Connect your Django registration API here.
+    // Connect Django registration API here
     setShowRegister(false);
     setShowLogin(true);
   };
@@ -113,12 +115,11 @@ const App = () => {
       {/* Navbar */}
       <Navbar
         cart={cart}
-        setShowCart={openCart}
-        setShowLogin={openLogin}
-        setShowRegister={openRegister}
-        isLoggedIn={isLoggedIn}
+        setShowCart={setShowCart}
+        setShowLogin={setShowLogin}
+        setShowRegister={setShowRegister}
+        setShowCheckout={setShowCheckout}
       />
-
       {/* Login Page */}
       {showLogin && (
         <Login
@@ -136,7 +137,7 @@ const App = () => {
         <Registration onLogin={openLogin} onRegister={handleRegister} />
       )}
 
-      {/* Main Website */}
+      {/* Main Website - Always accessible without login */}
       {!showCart && !showCheckout && !showLogin && !showRegister && (
         <>
           <Home
@@ -161,7 +162,7 @@ const App = () => {
         </>
       )}
 
-      {/* Cart: login is not required */}
+      {/* Cart - No login required */}
       {showCart && !showCheckout && (
         <Cart
           cart={cart}
@@ -171,7 +172,7 @@ const App = () => {
         />
       )}
 
-      {/* Checkout: only available after login */}
+      {/* Checkout - Login required */}
       {showCheckout && isLoggedIn && (
         <Checkout
           cart={cart}
