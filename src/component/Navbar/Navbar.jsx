@@ -1,4 +1,5 @@
 import React from "react";
+import "./Navbar.css";
 
 const Navbar = ({
   cart,
@@ -10,7 +11,6 @@ const Navbar = ({
   setShowProfile,
   userData,
 }) => {
-  // Navigate to website sections
   const goToSection = (section) => {
     setShowCart(false);
     setShowCheckout(false);
@@ -26,7 +26,6 @@ const Navbar = ({
     }, 150);
   };
 
-  // Open Cart
   const openCart = () => {
     setShowLogin(false);
     setShowRegister(false);
@@ -35,7 +34,6 @@ const Navbar = ({
     setShowCart(true);
   };
 
-  // Open Login
   const openLogin = () => {
     setShowCart(false);
     setShowCheckout(false);
@@ -44,7 +42,6 @@ const Navbar = ({
     setShowLogin(true);
   };
 
-  // Open Profile
   const openProfile = () => {
     setShowCart(false);
     setShowCheckout(false);
@@ -56,7 +53,6 @@ const Navbar = ({
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
         <button
           onClick={() => goToSection("home")}
           className="text-2xl font-bold text-orange-500"
@@ -64,38 +60,25 @@ const Navbar = ({
           🍴 Food Nest
         </button>
 
-        {/* Navigation Links */}
         <div className="flex items-center gap-6">
           <button onClick={() => goToSection("home")}>Home</button>
-
           <button onClick={() => goToSection("menu")}>Menu</button>
-
           <button onClick={() => goToSection("about")}>About</button>
-
           <button onClick={() => goToSection("contact")}>Contact</button>
 
-          {/* Login / Profile */}
           {isLoggedIn ? (
-            <div
-              className="navbar-profile cursor-pointer"
+            <button
+              type="button"
+              className="foodnest-avatar"
               onClick={openProfile}
+              title="My Profile"
             >
-              <div className="profile-avatar-small">
-                {userData?.name
-                  ? userData.name
-                      .split(" ")
-                      .map((word) => word[0])
-                      .join("")
-                      .substring(0, 2)
-                      .toUpperCase()
-                  : "A"}
-              </div>
-            </div>
+              {userData?.name?.trim()?.charAt(0).toUpperCase() || "U"}
+            </button>
           ) : (
             <button onClick={openLogin}>Login</button>
           )}
 
-          {/* Cart */}
           <button
             onClick={openCart}
             className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"

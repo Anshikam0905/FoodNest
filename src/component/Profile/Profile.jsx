@@ -6,7 +6,10 @@ const Profile = ({ user, onLogout }) => {
     <div className="profile-page">
       <div className="profile-container">
         <div className="profile-header">
-          {user?.name?.charAt(0).toUpperCase() || "U"}
+          {/* Profile Avatar */}
+          <div className="profile-avatar">
+            {user?.name?.charAt(0).toUpperCase() || "U"}
+          </div>
 
           <h2>{user?.name || "Food Nest User"}</h2>
           <p>{user?.email || "user@example.com"}</p>
