@@ -6,6 +6,9 @@ const Navbar = ({
   setShowLogin,
   setShowRegister,
   setShowCheckout,
+  isLoggedIn,
+  setShowProfile,
+  userData,
 }) => {
   // Navigate to website sections
   const goToSection = (section) => {
@@ -13,6 +16,7 @@ const Navbar = ({
     setShowCheckout(false);
     setShowLogin(false);
     setShowRegister(false);
+    setShowProfile(false);
 
     setTimeout(() => {
       document.getElementById(section)?.scrollIntoView({
@@ -27,6 +31,7 @@ const Navbar = ({
     setShowLogin(false);
     setShowRegister(false);
     setShowCheckout(false);
+    setShowProfile(false);
     setShowCart(true);
   };
 
@@ -35,7 +40,17 @@ const Navbar = ({
     setShowCart(false);
     setShowCheckout(false);
     setShowRegister(false);
+    setShowProfile(false);
     setShowLogin(true);
+  };
+
+  // Open Profile
+  const openProfile = () => {
+    setShowCart(false);
+    setShowCheckout(false);
+    setShowLogin(false);
+    setShowRegister(false);
+    setShowProfile(true);
   };
 
   return (
@@ -51,41 +66,34 @@ const Navbar = ({
 
         {/* Navigation Links */}
         <div className="flex items-center gap-6">
-          <button
-            onClick={() => goToSection("home")}
-            className="text-gray-700 hover:text-orange-500 font-medium"
-          >
-            Home
-          </button>
+          <button onClick={() => goToSection("home")}>Home</button>
 
-          <button
-            onClick={() => goToSection("menu")}
-            className="text-gray-700 hover:text-orange-500 font-medium"
-          >
-            Menu
-          </button>
+          <button onClick={() => goToSection("menu")}>Menu</button>
 
-          <button
-            onClick={() => goToSection("about")}
-            className="text-gray-700 hover:text-orange-500 font-medium"
-          >
-            About
-          </button>
+          <button onClick={() => goToSection("about")}>About</button>
 
-          <button
-            onClick={() => goToSection("contact")}
-            className="text-gray-700 hover:text-orange-500 font-medium"
-          >
-            Contact
-          </button>
+          <button onClick={() => goToSection("contact")}>Contact</button>
 
-          {/* Login */}
-          <button
-            onClick={openLogin}
-            className="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-50"
-          >
-            Login
-          </button>
+          {/* Login / Profile */}
+          {isLoggedIn ? (
+            <div
+              className="navbar-profile cursor-pointer"
+              onClick={openProfile}
+            >
+              <div className="profile-avatar-small">
+                {userData?.name
+                  ? userData.name
+                      .split(" ")
+                      .map((word) => word[0])
+                      .join("")
+                      .substring(0, 2)
+                      .toUpperCase()
+                  : "A"}
+              </div>
+            </div>
+          ) : (
+            <button onClick={openLogin}>Login</button>
+          )}
 
           {/* Cart */}
           <button

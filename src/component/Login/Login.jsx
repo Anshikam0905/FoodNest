@@ -10,14 +10,15 @@ const Login = ({ onRegister, onLoginSuccess, onForgotPassword }) => {
     e.preventDefault();
     setMessage("");
 
-    // Connect your real login API here.
     if (onLoginSuccess) {
-      onLoginSuccess({ email, password });
+      onLoginSuccess({
+        email: email,
+        password: password,
+      });
     } else {
-      setMessage("Connect your login API to continue.");
+      setMessage("Login API is not connected yet.");
     }
   };
-
   return (
     <div className="login-page">
       <div className="login-card">
