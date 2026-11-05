@@ -17,7 +17,7 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [user, setUser] = useState(null);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -201,11 +201,11 @@ const App = () => {
       {/* Profile Page */}
       {showProfile && (
         <Profile
-          user={userData}
+          user={user}
           onLogout={handleLogout}
-          onMyOrders={() => {
-            setShowProfile(false);
-            setShowMyOrders(true);
+          onMyOrders={handleMyOrders}
+          onUpdateUser={(updatedUser) => {
+            setUser(updatedUser);
           }}
         />
       )}

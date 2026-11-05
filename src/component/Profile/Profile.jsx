@@ -1,51 +1,19 @@
 import React from "react";
-import "./Profile.css";
 
-const Profile = ({ user, onLogout, onMyOrders }) => {
+const Profile = ({ user }) => {
   return (
-    <div className="profile-page">
-      <div className="profile-container">
-        <div className="profile-header">
-          {/* Profile Avatar */}
-          <div className="profile-avatar">
-            {user?.name?.charAt(0).toUpperCase() || "U"}
-          </div>
-
-          <h2>{user?.name || "Food Nest User"}</h2>
-          <p>{user?.email || "user@example.com"}</p>
-        </div>
-
-        <div className="profile-content">
-          <h3>Personal Information</h3>
-
-          <div className="profile-info">
-            <div>
-              <label>Full Name</label>
-              <p>{user?.name || "Not available"}</p>
-            </div>
-
-            <div>
-              <label>Email Address</label>
-              <p>{user?.email || "Not available"}</p>
-            </div>
-
-            <div>
-              <label>Phone Number</label>
-              <p>{user?.phone || "Not available"}</p>
-            </div>
-          </div>
-
-          <div className="profile-options">
-            <button onClick={onMyOrders}>My Orders</button>
-            <button>My Address</button>
-            <button>Edit Profile</button>
-          </div>
-
-          <button className="logout-btn" onClick={onLogout}>
-            Logout
-          </button>
-        </div>
-      </div>
+    <div
+      style={{
+        background: "#fff7f2",
+        minHeight: "100vh",
+        padding: "50px",
+        textAlign: "center",
+      }}
+    >
+      <h1>Food Nest Profile</h1>
+      <h2>{user?.name || "Food Nest User"}</h2>
+      <p>{user?.email || "Email not available"}</p>
+      <p>{user?.phone || "Phone not available"}</p>
     </div>
   );
 };
