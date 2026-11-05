@@ -11,7 +11,7 @@ import Contact from "./component/Contact";
 import Profile from "./component/Profile/Profile";
 import Login from "./component/Login/Login";
 import Registration from "./component/Login/Registration";
-
+import MyOrders from "./component/MyOrders/MyOrders";
 const App = () => {
   // Authentication states
   const [showLogin, setShowLogin] = useState(false);
@@ -23,7 +23,8 @@ const App = () => {
     email: "",
     phone: "",
   });
-
+  const [showMyOrders, setShowMyOrders] = useState(false);
+  const [orders, setOrders] = useState([]);
   const [registeredUser, setRegisteredUser] = useState(null);
 
   // Website states
@@ -198,10 +199,25 @@ const App = () => {
       )}
 
       {/* Profile Page */}
-      {showProfile && isLoggedIn && (
-        <Profile user={userData} onLogout={handleLogout} />
+      {showProfile && (
+        <Profile
+          user={userData}
+          onLogout={handleLogout}
+          onMyOrders={() => {
+            setShowProfile(false);
+            setShowMyOrders(true);
+          }}
+        />
       )}
-
+      {showMyOrders && (
+        <MyOrders
+          orders={orders}
+          onBack={() => {
+            setShowMyOrders(false);
+            setShowProfile(true);
+          }}
+        />
+      )}
       {/* Main Website */}
       {!showCart &&
         !showCheckout &&

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Profile.css";
 
-const Profile = ({ user, onLogout }) => {
+const Profile = ({ user, onLogout, onMyOrders }) => {
   return (
     <div className="profile-page">
       <div className="profile-container">
@@ -36,7 +36,7 @@ const Profile = ({ user, onLogout }) => {
           </div>
 
           <div className="profile-options">
-            <button>My Orders</button>
+            <button onClick={onMyOrders}>My Orders</button>
             <button>My Address</button>
             <button>Edit Profile</button>
           </div>
