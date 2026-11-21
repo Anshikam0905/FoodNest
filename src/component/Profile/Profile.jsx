@@ -1,19 +1,46 @@
 import React from "react";
+import "./Profile.css";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, onLogout, onMyOrders, onUpdateUser }) => {
   return (
-    <div
-      style={{
-        background: "#fff7f2",
-        minHeight: "100vh",
-        padding: "50px",
-        textAlign: "center",
-      }}
-    >
-      <h1>Food Nest Profile</h1>
-      <h2>{user?.name || "Food Nest User"}</h2>
-      <p>{user?.email || "Email not available"}</p>
-      <p>{user?.phone || "Phone not available"}</p>
+    <div className="profile-page">
+      <div className="profile-container">
+        <div className="profile-header">
+          <div className="profile-avatar">
+            {user?.name?.charAt(0).toUpperCase() || "U"}
+          </div>
+
+          <h1>My Profile</h1>
+          <p>Welcome to Food Nest!</p>
+        </div>
+
+        <div className="profile-details">
+          <div className="profile-info">
+            <label>Full Name</label>
+            <p>{user?.name || "Food Nest User"}</p>
+          </div>
+
+          <div className="profile-info">
+            <label>Email Address</label>
+            <p>{user?.email || "Email not available"}</p>
+          </div>
+
+          <div className="profile-info">
+            <label>Phone Number</label>
+            <p>{user?.phone || "Phone not available"}</p>
+          </div>
+        </div>
+
+        <div className="profile-buttons">
+          <button className="orders-btn" onClick={onMyOrders}>
+            My Orders
+          </button>
+
+          <button className="logout-btn" onClick={onLogout}>
+            Logout
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
