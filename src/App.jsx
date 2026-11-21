@@ -101,26 +101,30 @@ const App = () => {
       data.name ||
       [data.firstName, data.lastName].filter(Boolean).join(" ") ||
       registeredUser?.name ||
-      data.firstName ||
       "User";
 
-    setUserData({
+    const loggedInUser = {
       name: name,
       email: data.email || registeredUser?.email || "",
       phone: data.phone || registeredUser?.phone || "",
-    });
+    };
+
+    setUser(loggedInUser);
+    setUserData(loggedInUser);
 
     setIsLoggedIn(true);
     setShowLogin(false);
     setShowRegister(false);
-    setShowProfile(false);
 
     // Continue checkout if login was required for ordering
     if (continueToCheckout) {
       setShowCart(false);
       setShowCheckout(true);
+      setShowProfile(false);
     } else {
       setShowCheckout(false);
+      setShowCart(false);
+      setShowProfile(true);
     }
 
     setContinueToCheckout(false);
@@ -148,6 +152,10 @@ const App = () => {
       setContinueToCheckout(true);
       setShowLogin(true);
     }
+  };
+  const handleMyOrders = () => {
+    setShowProfile(false);
+    setShowMyOrders(true);
   };
 
   // Logout
@@ -199,13 +207,14 @@ const App = () => {
       )}
 
       {/* Profile Page */}
-      {showProfile && (
+      {showProfile && isLoggedIn && (
         <Profile
           user={user}
           onLogout={handleLogout}
           onMyOrders={handleMyOrders}
           onUpdateUser={(updatedUser) => {
             setUser(updatedUser);
+            setUserData(updatedUser);
           }}
         />
       )}
@@ -264,6 +273,8 @@ const App = () => {
           setCart={setCart}
           setShowCart={setShowCart}
           setShowCheckout={setShowCheckout}
+          setOrders={setOrders}
+          setShowProfile={setShowProfile}
         />
       )}
     </>

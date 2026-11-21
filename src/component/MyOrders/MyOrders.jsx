@@ -29,18 +29,16 @@ const MyOrders = ({ orders = [], onBack }) => {
               <div className="my-order-top">
                 <div>
                   <h3>Order #{order.id}</h3>
-                  <p>{order.date}</p>
+                  <p>{order.date || "Date not available"}</p>
                 </div>
 
-                <span
-                  className={`order-status ${order.status.toLowerCase().replaceAll(" ", "-")}`}
-                >
-                  {order.status}
+                <span className="order-status">
+                  {order.status || "Pending"}
                 </span>
               </div>
 
               <div className="my-order-items">
-                {order.items.map((item, index) => (
+                {(order.items || []).map((item, index) => (
                   <div className="my-order-item" key={index}>
                     <div className="my-order-food">
                       {item.image ? (
@@ -52,10 +50,10 @@ const MyOrders = ({ orders = [], onBack }) => {
 
                     <div className="my-order-food-info">
                       <h4>{item.name}</h4>
-                      <p>Quantity: {item.quantity}</p>
+                      <p>Quantity: {item.quantity || 1}</p>
                     </div>
 
-                    <strong>₹{item.price * item.quantity}</strong>
+                    <strong>₹{item.price * (item.quantity || 1)}</strong>
                   </div>
                 ))}
               </div>
@@ -67,7 +65,8 @@ const MyOrders = ({ orders = [], onBack }) => {
 
               <div className="my-order-address">
                 <p>
-                  <strong>Delivery Address:</strong> {order.address}
+                  <strong>Delivery Address:</strong>{" "}
+                  {order.address || "Address not available"}
                 </p>
               </div>
             </div>
